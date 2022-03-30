@@ -9,7 +9,23 @@ import logo from "./logo.svg";
 import "./App.css";
 
 // JSX APP Component
-function App() {
+const App: React.FC = () => {
+  const [result1, setResult1] = React.useState<string>("");
+  const [result2, setResult2] = React.useState<string>("");
+
+  React.useEffect(() => {
+    setResult1(ParImpar(5));
+    setResult2(ParImpar(8));
+  }, []);
+
+  const ParImpar = (numero: number): string => {
+    if (numero % 2 === 0) {
+      return `${numero} : Par`;
+    }
+
+    return `${numero} : Impar`;
+  };
+
   return (
     <div className="App">
       <Container>
@@ -27,10 +43,12 @@ function App() {
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum.
         </TextComponent>
+        <TextComponent>{result1}</TextComponent>
+        <TextComponent>{result2}</TextComponent>
         <ButtonComponent>Texto botón</ButtonComponent>
       </Container>
     </div>
   );
-}
+};
 
 export default App;
